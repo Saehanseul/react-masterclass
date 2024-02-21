@@ -1,30 +1,61 @@
 import { useState } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
-const Father = styled.div`
+const Wrapper = styled.div`
   display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background-color: ${(props) => props.theme.backgroundColor};
 `;
 
-const Btn = styled.button`
-  color: white;
-  background-color: tomato;
-  border: 0;
-  border-radius: 15px;
+const rotationAnimation = keyframes`
+  0% {
+    transform: rotate(0deg);
+    border-radius: 0px ;
+  }
+  50% {
+    transform: rotate(360deg);
+    border-radius: 50%;
+  }
+  100%{
+    transform: rotate(0deg);
+    border-radius: 0px;
+
+  }
 `;
 
-const Input = styled.input.attrs({ required: true })`
+const Emoji = styled.span`
+  font-size: 50px;
+`;
+
+const Box = styled.div`
+  width: 200px;
+  height: 200px;
   background-color: tomato;
+  animation: ${rotationAnimation} 2s linear infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  ${Emoji} {
+    &:hover {
+      font-size: 70px;
+    }
+  }
+`;
+
+const Title = styled.h1`
+  color: ${(props) => props.theme.textColor};
 `;
 
 function App() {
   return (
-    <Father>
-      <Input />
-      <Input />
-      <Input />
-      <Input />
-      <Input />
-    </Father>
+    <Wrapper>
+      <Title>Hello Styled Components</Title>
+      <Box>
+        <Emoji>🤗</Emoji>
+      </Box>
+    </Wrapper>
   );
 }
 
