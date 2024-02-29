@@ -3,7 +3,7 @@ import { users } from "../db";
 
 function Home() {
   return (
-    <div>
+    <>
       <h1>Home</h1>
       <ul>
         {users.map((user: any) => {
@@ -14,7 +14,7 @@ function Home() {
           );
         })}
       </ul>
-    </div>
+    </>
   );
 }
 
