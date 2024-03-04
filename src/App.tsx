@@ -77,9 +77,8 @@ function App() {
   return (
     <>
       <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
-        <button onClick={toggleTheme}>Toggle mode</button>
         <GlobalStyle />
-        <Router />
+        <Router toggleTheme={toggleTheme} isDark={isDark} />
       </ThemeProvider>
     </>
   );

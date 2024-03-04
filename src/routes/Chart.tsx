@@ -15,14 +15,15 @@ interface IHistorical {
 }
 
 interface ChartProps {
-  coinId: string;
+  coinId?: string;
+  isDark: boolean;
 }
 
-function Chart() {
+function Chart({ isDark }: ChartProps) {
   const { coinId } = useOutletContext() as ChartProps;
   const { isLoading, data } = useQuery<IHistorical[]>({
     queryKey: ["history", coinId],
-    queryFn: () => fetchCoinHistory(coinId)
+    queryFn: () => fetchCoinHistory(coinId!)
   });
   return (
     <div>
@@ -39,7 +40,7 @@ function Chart() {
           ]}
           options={{
             theme: {
-              mode: "dark"
+              mode: isDark ? "dark" : "light"
             },
             chart: {
               height: 300,

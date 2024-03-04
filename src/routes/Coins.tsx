@@ -20,10 +20,11 @@ const Header = styled.header`
 const CoinsList = styled.ul``;
 
 const Coin = styled.li`
-  background-color: white;
+  background-color: ${(props) => props.theme.cardBgColor};
   color: ${(props) => props.theme.textColor};
   border-radius: 15px;
   margin-bottom: 10px;
+  border: 1px solid white;
   a {
     display: flex;
     align-items: center;
@@ -63,18 +64,22 @@ interface ICoin {
   type: string;
 }
 
-function Coins() {
+interface ICoinsProps {
+  toggleTheme: () => void;
+  isDark: boolean;
+}
+
+function Coins({ toggleTheme, isDark }: ICoinsProps) {
   const { isLoading, error, data } = useQuery<ICoin[]>({
     queryKey: ["allCoins"],
     queryFn: fetchCoins
   });
-  console.log("isLoading", isLoading);
-  console.log("error", error);
-  console.log("data", data);
+
   return (
     <Container>
       <Header>
         <Title>Coins</Title>
+        <button onClick={toggleTheme}>Toggle Dark Mode</button>
       </Header>
       <CoinsList>
         {isLoading ? (

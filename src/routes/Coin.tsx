@@ -148,7 +148,11 @@ interface USDQuote {
   percent_from_price_ath: number;
 }
 
-function Coin() {
+interface ICoinProps {
+  isDark: boolean;
+}
+
+function Coin({ isDark }: ICoinProps) {
   const { coinId } = useParams();
   const location = useLocation();
   const state = location.state as RouteState;
@@ -165,11 +169,9 @@ function Coin() {
     queryFn: () => fetchCoinTickers(coinId!),
     refetchInterval: 5000
   });
-  console.log("moonsae infoLoading", infoLoading);
-  console.log("moonsae priceLoading", priceLoading);
+
   const loading = infoLoading || priceLoading;
-  console.log("moonsae loading", loading, infoData?.name);
-  console.log("moonsae state", state?.name);
+
   return (
     <Container>
       <Helmet>
