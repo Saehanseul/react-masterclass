@@ -165,15 +165,18 @@ function Coin() {
     queryFn: () => fetchCoinTickers(coinId!),
     refetchInterval: 5000
   });
-
+  console.log("moonsae infoLoading", infoLoading);
+  console.log("moonsae priceLoading", priceLoading);
   const loading = infoLoading || priceLoading;
+  console.log("moonsae loading", loading, infoData?.name);
+  console.log("moonsae state", state?.name);
   return (
     <Container>
       <Helmet>
         <title>hiihii</title>
       </Helmet>
       <Header>
-        <Title>{state?.name || loading ? "Loading.." : infoData?.name}</Title>
+        <Title>{loading ? "Loading.." : infoData?.name}</Title>
       </Header>
       {loading ? (
         <Loader>Loading...</Loader>
