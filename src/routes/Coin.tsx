@@ -148,11 +148,9 @@ interface USDQuote {
   percent_from_price_ath: number;
 }
 
-interface ICoinProps {
-  isDark: boolean;
-}
+interface ICoinProps {}
 
-function Coin({ isDark }: ICoinProps) {
+function Coin() {
   const { coinId } = useParams();
   const location = useLocation();
   const state = location.state as RouteState;
